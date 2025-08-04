@@ -1,23 +1,3 @@
-# Environment variables
-.env
-poller/.env
-backend/.env
-*.env
-
-# Python virtual environments
-.poller/venv
-
-# MyPy
-.poller/mypy_cache
-.mypy_cache
-
-# Backend
-backend/node_modules
-
-# Claude
-claude.md
-
-# Frontend
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies

@@ -18,7 +18,7 @@ interface TooltipProps {
 
 const CustomTooltip = ({ active, payload, label }: TooltipProps) => {
   if (active && payload && payload.length) {
-    const date = parseISO(label || '');
+    const date = parseISO(String(label || ''));
     return (
       <div className="bg-white p-4 border border-gray-200 rounded-lg shadow-lg">
         <p className="text-sm text-gray-600 mb-2">
@@ -204,7 +204,7 @@ export default function CommentsPage() {
                   <Tooltip
                     content={({ active, payload, label }) => {
                       if (active && payload && payload.length) {
-                        const date = parseISO(label || '');
+                        const date = parseISO(String(label || ''));
                         return (
                           <div className="bg-white p-3 border border-gray-200 rounded-lg shadow-lg">
                             <p className="text-sm text-gray-600 mb-1">

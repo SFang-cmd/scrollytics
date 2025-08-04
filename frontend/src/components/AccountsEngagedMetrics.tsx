@@ -1,13 +1,19 @@
 'use client';
 
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { recentPosts } from '@/lib/mockData';
 
 const COLORS = ['#3b82f6', '#ef4444', '#10b981', '#f59e0b', '#8b5cf6', '#06b6d4'];
 
 interface TooltipProps {
   active?: boolean;
-  payload?: any[];
+  payload?: Array<{
+    payload: {
+      name: string;
+      value: number;
+      count: number;
+    };
+  }>;
 }
 
 const CustomTooltip = ({ active, payload }: TooltipProps) => {
@@ -44,7 +50,7 @@ export default function AccountsEngagedMetrics() {
     acc[post.type].totalLikes += post.likes;
     acc[post.type].totalComments += post.comments;
     return acc;
-  }, {} as Record<string, any>);
+  }, {} as Record<string, { count: number; totalEngagement: number; totalLikes: number; totalComments: number }>);
 
   // Create pie chart data
   const pieData = Object.entries(postsByType).map(([type, data]) => ({

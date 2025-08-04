@@ -1,7 +1,7 @@
 'use client';
 
 import Layout from '@/components/Layout';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ComposedChart, Area } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ComposedChart, Area, Bar } from 'recharts';
 import { format, parseISO } from 'date-fns';
 import { engagementHistory, recentPosts, currentMetrics } from '@/lib/mockData';
 import { Heart, TrendingUp, BarChart3, Zap } from 'lucide-react';
@@ -18,7 +18,7 @@ interface TooltipProps {
 
 const CustomTooltip = ({ active, payload, label }: TooltipProps) => {
   if (active && payload && payload.length) {
-    const date = parseISO(label || '');
+    const date = parseISO(String(label || ''));
     return (
       <div className="bg-white p-4 border border-gray-200 rounded-lg shadow-lg">
         <p className="text-sm text-gray-600 mb-2">
@@ -184,7 +184,7 @@ export default function EngagementPage() {
                 <Tooltip
                   content={({ active, payload, label }) => {
                     if (active && payload && payload.length) {
-                      const date = parseISO(label || '');
+                      const date = parseISO(String(label || ''));
                       return (
                         <div className="bg-white p-3 border border-gray-200 rounded-lg shadow-lg">
                           <p className="text-sm text-gray-600 mb-1">

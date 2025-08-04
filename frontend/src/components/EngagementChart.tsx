@@ -6,13 +6,17 @@ import { engagementHistory } from '@/lib/mockData';
 
 interface TooltipProps {
   active?: boolean;
-  payload?: any[];
+  payload?: Array<{
+    color: string;
+    name: string;
+    value: number;
+  }>;
   label?: string;
 }
 
 const CustomTooltip = ({ active, payload, label }: TooltipProps) => {
   if (active && payload && payload.length) {
-    const date = parseISO(label || '');
+    const date = parseISO(String(label || ''));
     return (
       <div className="bg-white p-3 border border-gray-200 rounded-lg shadow-lg">
         <p className="text-sm text-gray-600 mb-1">

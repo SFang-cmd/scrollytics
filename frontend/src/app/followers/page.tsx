@@ -1,20 +1,24 @@
 'use client';
 
 import Layout from '@/components/Layout';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area, BarChart, Bar } from 'recharts';
+import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area, BarChart, Bar } from 'recharts';
 import { format, parseISO } from 'date-fns';
 import { followerHistory, getGrowthMetrics, currentMetrics } from '@/lib/mockData';
-import { TrendingUp, TrendingDown, Users, UserPlus } from 'lucide-react';
+import { TrendingUp, Users, UserPlus } from 'lucide-react';
 
 interface TooltipProps {
   active?: boolean;
-  payload?: any[];
+  payload?: Array<{
+    color: string;
+    name: string;
+    value: number;
+  }>;
   label?: string;
 }
 
 const CustomTooltip = ({ active, payload, label }: TooltipProps) => {
   if (active && payload && payload.length) {
-    const date = parseISO(label || '');
+    const date = parseISO(String(label || ''));
     return (
       <div className="bg-white p-4 border border-gray-200 rounded-lg shadow-lg">
         <p className="text-sm text-gray-600 mb-2">
@@ -179,7 +183,7 @@ export default function FollowersPage() {
                 <Tooltip
                   content={({ active, payload, label }) => {
                     if (active && payload && payload.length) {
-                      const date = parseISO(label || '');
+                      const date = parseISO(String(label || ''));
                       const growth = payload[0].value as number;
                       return (
                         <div className="bg-white p-3 border border-gray-200 rounded-lg shadow-lg">
@@ -197,7 +201,7 @@ export default function FollowersPage() {
                 />
                 <Bar
                   dataKey="growth"
-                  fill={(entry) => entry >= 0 ? '#10b981' : '#ef4444'}
+                  fill="#10b981"
                   radius={[2, 2, 0, 0]}
                 />
               </BarChart>

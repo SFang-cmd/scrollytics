@@ -18,7 +18,7 @@ interface TooltipProps {
 
 const CustomTooltip = ({ active, payload, label }: TooltipProps) => {
   if (active && payload && payload.length) {
-    const date = parseISO(label || '');
+    const date = parseISO(String(label || ''));
     return (
       <div className="bg-white p-4 border border-gray-200 rounded-lg shadow-lg">
         <p className="text-sm text-gray-600 mb-2">
@@ -103,7 +103,7 @@ export default function ReachPage() {
         {/* Header */}
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Reach Analytics</h1>
-          <p className="text-gray-600 mt-2">Understanding your content's reach and audience engagement patterns</p>
+          <p className="text-gray-600 mt-2">Understanding your content&apos;s reach and audience engagement patterns</p>
         </div>
 
         {/* Key Metrics Cards */}
@@ -219,7 +219,7 @@ export default function ReachPage() {
                   <Tooltip
                     content={({ active, payload, label }) => {
                       if (active && payload && payload.length) {
-                        const date = parseISO(label || '');
+                        const date = parseISO(String(label || ''));
                         return (
                           <div className="bg-white p-3 border border-gray-200 rounded-lg shadow-lg">
                             <p className="text-sm text-gray-600 mb-1">
@@ -258,10 +258,8 @@ export default function ReachPage() {
               <ResponsiveContainer width="100%" height="100%">
                 <RadialBarChart cx="50%" cy="50%" innerRadius="20%" outerRadius="80%" data={audienceOverlap}>
                   <RadialBar
-                    minAngle={15}
                     label={{ position: 'insideStart', fill: '#fff' }}
                     background
-                    clockWise
                     dataKey="value"
                   />
                   <Legend iconSize={18} />

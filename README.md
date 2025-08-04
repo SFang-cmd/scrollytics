@@ -15,6 +15,17 @@ Scrollytics is a comprehensive Instagram analytics dashboard platform that provi
 
 Built for scalability and product engineering excellence, Scrollytics showcases backend, infrastructure, and data handling skills at a high standard.
 
+# 🚀 Scrollytics Demo
+
+**💡 Demo Notice:**  
+The analytics and dashboards shown here feature sample data taken from a random Instagram account just for demonstration purposes.
+
+**🔑 Want to use your own Instagram stats?**  
+You can connect your own Instagram account and automatically fetch data using the [Instagram API](https://developers.facebook.com/docs/instagram-api/). Just clone this repo and follow the setup steps to connect your profile!
+
+**🌐 Try the live demo:**  
+👉 [scrollytics.vercel.app](https://scrollytics.vercel.app/)
+
 ## 🚀 Key Features
 
 ### Core Functionality

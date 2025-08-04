@@ -1,14 +1,18 @@
 'use client';
 
 import Layout from '@/components/Layout';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area, BarChart, Bar, ComposedChart } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ComposedChart, Area } from 'recharts';
 import { format, parseISO } from 'date-fns';
 import { engagementHistory, recentPosts, currentMetrics } from '@/lib/mockData';
 import { Heart, TrendingUp, BarChart3, Zap } from 'lucide-react';
 
 interface TooltipProps {
   active?: boolean;
-  payload?: any[];
+  payload?: Array<{
+    color: string;
+    name: string;
+    value: number;
+  }>;
   label?: string;
 }
 

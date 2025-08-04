@@ -3,12 +3,16 @@
 import Layout from '@/components/Layout';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area, BarChart, Bar, RadialBarChart, RadialBar, Legend } from 'recharts';
 import { format, parseISO } from 'date-fns';
-import { engagementHistory, recentPosts, currentMetrics, followerHistory } from '@/lib/mockData';
+import { engagementHistory, recentPosts, currentMetrics } from '@/lib/mockData';
 import { Target, Users, TrendingUp, Eye } from 'lucide-react';
 
 interface TooltipProps {
   active?: boolean;
-  payload?: any[];
+  payload?: Array<{
+    color: string;
+    name: string;
+    value: number;
+  }>;
   label?: string;
 }
 
@@ -58,9 +62,9 @@ export default function ReachPage() {
     acc[week].totalEngagement += day.likes + day.comments;
     acc[week].days += 1;
     return acc;
-  }, {} as Record<string, any>);
+  }, {} as Record<string, { week: string; accountsEngaged: number; totalEngagement: number; days: number }>);
 
-  const weeklyComparison = Object.values(weeklyReachData).map((item: any) => ({
+  const weeklyComparison = Object.values(weeklyReachData).map((item) => ({
     ...item,
     avgReachPerDay: Math.round(item.accountsEngaged / item.days),
     avgEngagementPerDay: Math.round(item.totalEngagement / item.days),
@@ -84,9 +88,9 @@ export default function ReachPage() {
     acc[post.type].engagement += post.likes + post.comments;
     acc[post.type].posts += 1;
     return acc;
-  }, {} as Record<string, any>);
+  }, {} as Record<string, { type: string; reach: number; engagement: number; posts: number }>);
 
-  const reachByContentType = Object.values(contentTypeReach).map((item: any) => ({
+  const reachByContentType = Object.values(contentTypeReach).map((item) => ({
     name: item.type.charAt(0).toUpperCase() + item.type.slice(1),
     avgReach: Math.round(item.reach / item.posts),
     avgEngagement: Math.round(item.engagement / item.posts),

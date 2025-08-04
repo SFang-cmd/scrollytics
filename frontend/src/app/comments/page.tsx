@@ -8,7 +8,11 @@ import { MessageCircle, TrendingUp, Users, BarChart3 } from 'lucide-react';
 
 interface TooltipProps {
   active?: boolean;
-  payload?: any[];
+  payload?: Array<{
+    color: string;
+    name: string;
+    value: number;
+  }>;
   label?: string;
 }
 
@@ -53,9 +57,9 @@ export default function CommentsPage() {
     acc[post.type].comments += post.comments;
     acc[post.type].posts += 1;
     return acc;
-  }, {} as Record<string, any>);
+  }, {} as Record<string, { type: string; comments: number; posts: number }>);
 
-  const commentDistribution = Object.values(commentsByType).map((item: any) => ({
+  const commentDistribution = Object.values(commentsByType).map((item) => ({
     name: item.type.charAt(0).toUpperCase() + item.type.slice(1),
     value: item.comments,
     avgPerPost: Math.round(item.comments / item.posts)
@@ -71,9 +75,9 @@ export default function CommentsPage() {
     acc[week].comments += day.comments;
     acc[week].days += 1;
     return acc;
-  }, {} as Record<string, any>);
+  }, {} as Record<string, { week: string; comments: number; days: number }>);
 
-  const weeklyComparison = Object.values(weeklyData).map((item: any) => ({
+  const weeklyComparison = Object.values(weeklyData).map((item) => ({
     ...item,
     avgPerDay: Math.round(item.comments / item.days)
   }));

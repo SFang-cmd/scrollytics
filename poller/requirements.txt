@@ -1,0 +1,8 @@
+# PostgresSQL client library
+psycopg2-binary
+
+# Testing library
+pytest
+
+# dotenv for environment variables
+python-dotenv

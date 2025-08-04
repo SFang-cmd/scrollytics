@@ -1,1 +1,2 @@
-# scrollytics
+# Scrollytics - Instagram insights tracker
+

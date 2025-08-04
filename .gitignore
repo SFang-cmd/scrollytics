@@ -1,0 +1,10 @@
+# Environment variables
+.env
+poller/.env
+
+# Python virtual environment
+.poller/venv
+
+# MyPy
+.poller/mypy_cache
+.mypy_cache
